@@ -19,5 +19,6 @@ public class CarImage {
     @JoinColumn(name = "car_id", nullable = false)
     private Car car;
 
-    private String imageUrl;  // Store URL/path for the image
+    @Lob
+    private String imageData;  // Store URL/path for the image
 }

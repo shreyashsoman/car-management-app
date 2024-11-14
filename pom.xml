@@ -86,5 +86,21 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<!-- Local Development Profile -->
+		<profile>
+			<id>local</id>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
 
+		<!-- Heroku Production Profile -->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
 </project>
