@@ -8,8 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -43,11 +43,11 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // CORS Configuration Source to replace deprecated `cors()`
+    // CORS Configuration Source to allow requests from the frontend
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*")); // Allow any origin (consider specifying trusted domains)
+        configuration.setAllowedOrigins(List.of("http://localhost:3005")); // Add your frontend URL here
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
@@ -57,17 +57,17 @@ public class SecurityConfig {
         return source;
     }
 
-    // Optional: Define a bean to configure CORS globally if needed for Spring MVC
+    // Optional: Define a bean to configure CORS globally for MVC (if needed)
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("*")
+                        .allowedOrigins("http://localhost:3005") // Add your frontend URL here
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*");
-                        //.allowCredentials(true);
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
