@@ -23,7 +23,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // Define a PasswordEncoder bean for any password-related tasks in the application
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
