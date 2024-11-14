@@ -15,22 +15,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Disable CSRF for simplicity in development
+                .csrf(csrf -> csrf.disable()) // Disable CSRF for simplicity
                 .authorizeHttpRequests(auth -> auth
-                        // Permit access to Swagger UI and related documentation without authentication
-                        .requestMatchers("/api/docs/**", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
-                        // All other requests must be authenticated
-                        .anyRequest().authenticated()
-                )
-                .httpBasic(httpBasic -> httpBasic.realmName("Car Management Application")); // Configure HTTP Basic authentication
+                        .anyRequest().permitAll() // Permit all requests without authentication
+                );
 
         return http.build();
     }
 
-    // Define a PasswordEncoder bean so that Spring can inject it wherever needed
+    // Define a PasswordEncoder bean for any password-related tasks in the application
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
-
