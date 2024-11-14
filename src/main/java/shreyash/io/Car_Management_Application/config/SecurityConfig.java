@@ -20,7 +20,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
-                                "/swagger-ui.html",
+                                "/swagger-ui/index.html",
                                 "/swagger-resources/**",
                                 "/webjars/**"
                         ).permitAll() // Allow access to Swagger UI without authentication
