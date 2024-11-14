@@ -64,7 +64,7 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3005") // Add your frontend URL here
+                        .allowedOrigins("https://car-management-frontend-eight.vercel.app") // Add your frontend URL here
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
